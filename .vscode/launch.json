@@ -1,0 +1,124 @@
+
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Serverless Offline",
+        "program": "${workspaceRoot}/node_modules/serverless/bin/serverless",
+        "args": [
+          "offline",
+          "start",
+          "--port",
+          "3000"
+        ]
+      },
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Serverless Offline Symlinks",
+        "program": "${workspaceRoot}/node_modules/serverless/bin/serverless",
+        "args": [
+          "offline",
+          "start",
+          "--port",
+          "3000"
+        ],
+        "runtimeArgs": [
+          "--preserve-symlinks"
+        ],
+        "env": {
+          "LOCAL": "true"
+        }
+      },
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Mocha",
+        "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+        "args": [
+          "-t",
+          "10000",
+          "test/**/*.js",
+          "--colors"
+        ],
+        "env": {
+          "NODE_ENV": "test",
+          "BOT": "core",
+        },
+        "runtimeExecutable": "node"
+      },
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Code Coverage",
+        "runtimeArgs": [
+          "${workspaceRoot}/node_modules/.bin/nyc",
+          "--reporter=lcov",
+          "--reporter=text-lcov",
+          "npm",
+          "test"
+        ],
+        "cwd": "${workspaceRoot}",
+        "console": "integratedTerminal",
+        "runtimeExecutable": "node",
+        "sourceMaps": false
+      },
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Process Telegram Hello",
+        "address": "localhost",
+        "protocol": "inspector",
+        "console": "integratedTerminal",
+        "program": "${workspaceRoot}/node_modules/serverless/bin/serverless",
+        "args": [
+          "invoke",
+          "local",
+          "--function",
+          "process-message",
+          "-d",
+          "$(cat ${workspaceRoot}/test/mocks/telegram-hello.json)"
+        ]
+      },
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Process Message Save Variable",
+        "address": "localhost",
+        "protocol": "inspector",
+        "console": "integratedTerminal",
+        "program": "${workspaceRoot}/node_modules/serverless/bin/serverless",
+        "args": [
+          "invoke",
+          "local",
+          "--function",
+          "process-message",
+          "-d",
+          "$(cat ${workspaceRoot}/test/mocks/save-session-whatsapp.json)"
+        ]
+      },
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Process Message Simple decision test",
+        "address": "localhost",
+        "protocol": "inspector",
+        "console": "integratedTerminal",
+        "program": "${workspaceRoot}/node_modules/serverless/bin/serverless",
+        "args": [
+          "invoke",
+          "local",
+          "--function",
+          "process-message",
+          "-d",
+          "$(cat ${workspaceRoot}/test/mocks/simple-decision-whatsapp.json)"
+        ]
+      }
+    ]
+  }
+  

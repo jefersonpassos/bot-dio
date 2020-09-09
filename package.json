@@ -1,0 +1,11 @@
+{
+  "name": "botDio",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "middy": "^0.36.0",
+    "serverless": "^1.80.0",
+    "serverless-offline": "^6.7.0",
+    "wikijs": "^6.0.1"
+  }
+}

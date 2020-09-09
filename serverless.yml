@@ -1,0 +1,23 @@
+
+service: botdio
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: users/create
+          method: get
+  orchestrator:
+    handler: app/Handlers/Orchestrator.orchestrator
+    events:
+      - http:
+          path: orchestrator
+          method: post
+
+plugins:
+  - serverless-offline
